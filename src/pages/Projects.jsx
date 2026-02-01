@@ -16,7 +16,7 @@ const Projects = () => {
   // Ref untuk target scroll
   const detailSectionRef = useRef(null);
 
-  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Python Automation'];
+  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Python Automation', 'Other'];
 
   useEffect(() => {
     // Query data project

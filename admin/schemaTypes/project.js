@@ -17,6 +17,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'year',
+      title: 'Tahun Project',
+      type: 'number',
+    },
+    {
+      name: 'target',
+      title: 'Target User',
+      type: 'string',
+    },
+    {
       name: 'category',
       title: 'Kategori',
       type: 'string',

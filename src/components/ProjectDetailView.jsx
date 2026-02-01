@@ -11,6 +11,7 @@ const ProjectDetailView = ({ slug, onClose }) => {
   useEffect(() => {
     if (!slug) return;
     setLoading(true);
+    // Pastikan mengambil field targetUser, year, dll dari Sanity
     const query = `*[_type == "project" && slug.current == "${slug}"][0]{
       ...,
       gallery[]
@@ -24,9 +25,9 @@ const ProjectDetailView = ({ slug, onClose }) => {
   }, [slug]);
 
   if (loading) return (
-    <div className="py-12 text-center"> {/* Padding dikurangi */}
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto"></div>
-      <p className="mt-4 text-sm text-slate-500">Memuat detail...</p>
+    <div className="py-8 text-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+      <p className="mt-2 text-xs text-slate-500">Memuat...</p>
     </div>
   );
 
@@ -38,7 +39,24 @@ const ProjectDetailView = ({ slug, onClose }) => {
 
   return (
     <>
-      {/* --- LIGHTBOX (Tetap sama) --- */}
+      {/* CSS Khusus untuk Scrollbar Tipis */}
+      <style>{`
+        .thin-scrollbar::-webkit-scrollbar {
+          height: 4px; /* Ukuran scrollbar sangat kecil */
+        }
+        .thin-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .thin-scrollbar::-webkit-scrollbar-thumb {
+          background-color: #e2e8f0; /* slate-200 */
+          border-radius: 10px;
+        }
+        .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: #cbd5e1; /* slate-300 */
+        }
+      `}</style>
+
+      {/* --- LIGHTBOX (Zoom Gambar) --- */}
       {selectedImage && (
         <div 
           className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm cursor-zoom-out"
@@ -56,18 +74,24 @@ const ProjectDetailView = ({ slug, onClose }) => {
       )}
 
       {/* --- KONTEN DETAIL UTAMA --- */}
-      <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-fade-in-up relative">
+      {/* Container utama dibuat lebih rounded dan compact */}
+      <div className="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden animate-fade-in-up relative mt-4">
         
         <button 
           onClick={onClose}
-          className="absolute top-3 right-3 z-20 bg-white/90 hover:bg-white text-slate-600 p-1.5 rounded-full shadow-sm transition-all border border-slate-200"
+          className="absolute top-2 right-2 z-20 bg-white/90 hover:bg-red-50 text-slate-400 hover:text-red-500 p-1 rounded-full shadow-sm transition-all border border-slate-200"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
-        {/* --- BAGIAN GALERI (DIKECILKAN) --- */}
-        <div className="bg-slate-50 pt-4 pb-2 border-b border-slate-200"> {/* Padding atas dikurangi */}
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 px-6 pb-3 scrollbar-hide" style={{ scrollBehavior: 'smooth' }}>
+        {/* --- BAGIAN GALERI (DIKECILKAN LAGI) --- */}
+        <div className="bg-slate-50/50 pt-3 pb-1 border-b border-slate-200">
+          <div className="px-5 mb-1 flex items-center gap-1">
+             <Maximize2 size={10} className="text-slate-400"/>
+             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Gallery</span>
+          </div>
+
+          <div className="thin-scrollbar flex overflow-x-auto snap-x snap-mandatory gap-3 px-5 pb-3" style={{ scrollBehavior: 'smooth' }}>
             {allImages.length > 0 ? (
               allImages.map((img, index) => (
                 <div 
@@ -75,37 +99,31 @@ const ProjectDetailView = ({ slug, onClose }) => {
                   className="snap-center flex-shrink-0 cursor-zoom-in relative group"
                   onClick={() => setSelectedImage(img)}
                 >
-                  {/* PERUBAHAN BESAR DI SINI: Tinggi gambar dikurangi */}
+                  {/* UKURAN GAMBAR DIKECILKAN LAGI (h-32 di HP, h-48 di Laptop) */}
                   <img 
-                    src={urlFor(img).height(300).url()} // Request ukuran lebih kecil ke Sanity
+                    src={urlFor(img).height(200).url()} 
                     alt={`Screenshot ${index + 1}`} 
-                    className="h-48 md:h-64 w-auto object-cover rounded-lg shadow-sm border border-slate-200 group-hover:brightness-90 transition-all"
+                    className="h-32 md:h-48 w-auto object-cover rounded shadow-sm border border-slate-200 group-hover:brightness-90 transition-all"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="bg-black/50 text-white p-1.5 rounded-full backdrop-blur-sm">
-                      <Maximize2 size={16} />
-                    </div>
-                  </div>
                 </div>
               ))
             ) : (
-              <div className="h-32 w-full flex items-center justify-center text-sm text-slate-400 italic bg-slate-100 rounded-lg">
+              <div className="h-20 w-full flex items-center justify-center text-xs text-slate-400 italic bg-slate-100 rounded">
                 Tidak ada gambar
               </div>
             )}
           </div>
         </div>
 
-        {/* --- KONTEN TEXT & TOMBOL (DIKECILKAN PADDINGNYA) --- */}
-        <div className="p-6 md:p-8"> {/* Padding dikurangi dari p-8 md:p-12 */}
+        {/* --- KONTEN TEXT (PADDING DIKECILKAN) --- */}
+        <div className="p-5 md:p-6"> 
           
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-3 mb-4">
             <div>
-               {/* PERUBAHAN: Font size judul dikurangi */}
-               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2 leading-tight">{project.title}</h2>
-               <span className="bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider inline-block">
+               <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-1 leading-tight">{project.title}</h2>
+               <div className="inline-block bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border border-blue-100">
                  {project.category}
-               </span>
+               </div>
             </div>
 
             {project.liveUrl && (
@@ -113,47 +131,49 @@ const ProjectDetailView = ({ slug, onClose }) => {
                 href={project.liveUrl} 
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold shadow-md text-sm transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-md font-bold shadow-sm text-xs transition-all"
               >
-                <Globe size={16} />
-                Visit Live Site
-                <ExternalLink size={14} />
+                <Globe size={14} />
+                Visit Live
+                <ExternalLink size={12} />
               </a>
             )}
           </div>
 
-          {/* Metadata */}
-          <div className="flex flex-wrap gap-4 text-slate-500 text-xs mb-6 border-y border-slate-100 py-4">
+          {/* Metadata Row - Compact */}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-slate-500 text-xs mb-5 border-y border-slate-50 py-3 bg-slate-50/30 rounded px-2">
               <div className="flex items-center gap-1.5">
-                  <User size={14} className="text-primary" />
-                  <span className="font-semibold text-slate-700">Role:</span> ERP Implementer
+                  <User size={14} className="text-blue-500" />
+                  <span className="font-semibold text-slate-700">User:</span>
+                  {project.target}
               </div>
               <div className="flex items-center gap-1.5">
-                  <Calendar size={14} className="text-primary" />
-                  <span className="font-semibold text-slate-700">Year:</span> 2024
+                  <Calendar size={14} className="text-blue-500" />
+                  <span className="font-semibold text-slate-700">Year:</span>
+                  {project.year}
               </div>
               <div className="flex items-center gap-1.5">
-                  <Tag size={14} className="text-primary" />
+                  <Tag size={14} className="text-blue-500" />
                   <span className="font-semibold text-slate-700">Stack:</span> 
-                  {project.techStack?.join(", ") || "Odoo"}
+                  {Array.isArray(project.techStack) ? project.techStack.join(", ") : project.techStack}
               </div>
           </div>
 
-          {/* Rich Text */}
-          <div className="prose prose-sm md:prose-base prose-blue max-w-none text-slate-600">
+          {/* Deskripsi / Rich Text */}
+          <div className="prose prose-sm prose-slate max-w-none text-slate-600 leading-relaxed text-sm">
              {project.content ? (
                <PortableText value={project.content} />
              ) : (
-               <p className="italic text-slate-400 text-sm">Deskripsi detail proyek sedang disiapkan.</p>
+               <p className="italic text-slate-400 text-xs">Deskripsi detail proyek belum tersedia.</p>
              )}
           </div>
           
-          <div className="mt-8 text-center border-t border-slate-100 pt-4">
+          <div className="mt-6 text-center pt-2">
               <button 
                   onClick={onClose}
-                  className="text-slate-400 hover:text-red-500 font-semibold transition-colors flex items-center gap-2 mx-auto text-sm"
+                  className="text-slate-400 hover:text-red-500 font-medium transition-colors flex items-center gap-1.5 mx-auto text-xs"
               >
-                  <X size={14}/> Tutup Detail
+                  <X size={12}/> Tutup Detail
               </button>
           </div>
         </div>

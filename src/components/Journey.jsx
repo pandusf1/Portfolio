@@ -34,7 +34,7 @@ const Journey = () => {
   const dataToShow = activeTab === 'education' ? journeyData.education : journeyData.experience;
 
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-20 pb-10 bg-white">
       <div className="container mx-auto px-6 max-w-4xl">
         
         {/* Header Section */}
