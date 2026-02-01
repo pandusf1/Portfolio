@@ -75,7 +75,6 @@ const Hero = () => {
                 </div>
                 <div className="mt-3 text-center bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm border border-slate-100">
                   <h3 className="font-bold text-slate-800 text-sm">Accounting</h3>
-                  <p className="text-[10px] text-slate-500">General Ledger</p>
                 </div>
               </div>
 
