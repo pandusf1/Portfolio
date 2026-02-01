@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const menuItems = [
     { name: 'Home', path: '/' },
-    { name: 'ERP Showcase', path: '/projects' }, // Highlight utama kamu
+    { name: 'Projects Showcase', path: '/projects' }, // Highlight utama kamu
     { name: 'About', path: '/about' },
   ];
 

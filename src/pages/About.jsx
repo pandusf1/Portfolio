@@ -14,7 +14,7 @@ const About = () => {
         {/* Konten Cerita */}
         <div className="space-y-8 text-lg text-slate-600 leading-relaxed">
           <p>
-            Halo! Saya adalah seorang lulusan Akuntansi yang menemukan *passion* di dunia teknologi, khususnya sistem ERP.
+            Halo! Saya Pandu Safrilio Fadhil seorang lulusan STr Komputerisasi Akuntansi yang menemukan *passion* di dunia sistem informasi akuntansi, khususnya sistem ERP.
           </p>
           
           <p>

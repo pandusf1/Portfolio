@@ -1,20 +1,42 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProjectCard from '../components/ProjectCard';
-import { projects } from '../data/projects'; // Import data dummy
+import { client, urlFor } from '../client'; // 1. Import Client Sanity
 
 const Projects = () => {
-  // State untuk menyimpan kategori yang sedang dipilih
+  // State untuk menyimpan data ASLI dari Sanity
+  const [projects, setProjects] = useState([]); 
+  // State untuk filter
   const [activeCategory, setActiveCategory] = useState('All');
+  // State untuk loading (biar user tau lagi ambil data)
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Daftar kategori untuk tombol filter
-  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Python Automation'];
+  // Daftar kategori untuk tombol filter (Harus sama dengan yang di Schema Sanity)
+  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Other'];
 
-  // Logika penyaringan data
+  // 2. Ambil data saat halaman dibuka
+  useEffect(() => {
+    const query = '*[_type == "project"]'; // Ambil semua tipe 'project'
+
+    client.fetch(query)
+      .then((data) => {
+        setProjects(data); // Simpan data ke state
+        setIsLoading(false); // Matikan loading
+      })
+      .catch((err) => {
+        console.error("Gagal ambil data:", err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  // 3. Logika penyaringan data (Updated)
   const filteredProjects = activeCategory === 'All' 
     ? projects 
-    : projects.filter(item => item.category.includes(activeCategory.split(" ")[0])); 
-    // ^ Trik simpel: filter berdasarkan kata pertama kategori (misal: "Odoo" dari "Odoo ERP")
-    // Kamu bisa sesuaikan logika ini nanti kalau datanya makin kompleks.
+    : projects.filter(item => {
+        // Jaga-jaga kalau kategori kosong, biar gak error
+        if (!item.category) return false;
+        // Cek apakah kategori di Sanity mengandung kata kunci tombol
+        return item.category.includes(activeCategory);
+      });
 
   return (
     <section className="pt-32 pb-20 bg-slate-50 min-h-screen">
@@ -37,8 +59,8 @@ const Projects = () => {
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-primary text-white shadow-lg scale-105' // Style kalau aktif
-                  : 'bg-white text-slate-600 border border-slate-200 hover:border-secondary hover:text-secondary' // Style kalau tidak aktif
+                  ? 'bg-primary text-white shadow-lg scale-105' 
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-secondary hover:text-secondary' 
               }`}
             >
               {category}
@@ -46,19 +68,36 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Grid Hasil Proyek */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.length > 0 ? (
-            filteredProjects.map((item) => (
-              <ProjectCard key={item.id} project={item} />
-            ))
-          ) : (
-            // Tampilan kalau tidak ada proyek di kategori tersebut
-            <div className="col-span-full text-center py-20 text-slate-400">
-              <p>Belum ada proyek di kategori ini.</p>
-            </div>
-          )}
-        </div>
+        {/* Kondisi Loading */}
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        ) : (
+          /* Grid Hasil Proyek */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((item) => (
+                <ProjectCard 
+                  key={item._id} // Pakai _id dari Sanity
+                  project={{
+                    title: item.title,
+                    category: item.category,
+                    description: item.description,
+                    techStack: item.techStack || [], // Default array kosong biar gak error
+                    // Konversi gambar Sanity ke URL asli
+                    image: item.image ? urlFor(item.image).url() : null 
+                  }} 
+                />
+              ))
+            ) : (
+              // Tampilan kalau tidak ada proyek
+              <div className="col-span-full text-center py-20 text-slate-400">
+                <p>Belum ada proyek di kategori <span className="font-semibold text-slate-600">"{activeCategory}"</span>.</p>
+              </div>
+            )}
+          </div>
+        )}
 
       </div>
     </section>
