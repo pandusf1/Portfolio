@@ -1,37 +1,39 @@
 import { ArrowUpRight, FolderGit2 } from 'lucide-react';
 
-// Tambahkan prop "onClick"
 const ProjectCard = ({ project, onClick }) => {
   return (
-    <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500/50 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+    <div className="group relative bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
       
-      {/* Bagian Gambar */}
-      <div className="h-48 w-full bg-slate-100 flex items-center justify-center relative overflow-hidden">
+      <div className="h-40 w-full bg-slate-100 flex items-center justify-center relative overflow-hidden">
         {project.image ? (
           <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : (
-          <FolderGit2 className="text-slate-300 w-16 h-16" />
+          <FolderGit2 className="text-slate-300 w-12 h-12" />
         )}
       </div>
 
-      {/* Bagian Konten */}
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="text-xs font-bold text-secondary uppercase tracking-wider mb-2">
+      {/* 2. Padding Lebih Kecil (p-5) */}
+      <div className="p-5 flex flex-col flex-grow">
+        
+        {/* Kategori Lebih Kecil */}
+        <div className="text-[10px] font-bold text-secondary uppercase tracking-wider mb-2">
           {project.category}
         </div>
         
-        <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-primary transition-colors">
+        {/* Judul Font Lebih Kecil (text-lg) */}
+        <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors line-clamp-1">
           {project.title}
         </h3>
         
-        <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
+        {/* Deskripsi Lebih Ringkas (line-clamp-2) */}
+        <p className="text-slate-600 text-xs leading-relaxed mb-4 line-clamp-2">
           {project.description}
         </p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+        <div className="flex flex-wrap gap-1.5 mb-4 mt-auto">
           {project.techStack.map((tech, index) => (
-            <span key={index} className="text-xs font-medium px-2 py-1 bg-slate-100 text-slate-600 rounded-md">
+            <span key={index} className="text-[10px] font-medium px-2 py-1 bg-slate-100 text-slate-600 rounded">
               {tech}
             </span>
           ))}
@@ -39,10 +41,10 @@ const ProjectCard = ({ project, onClick }) => {
 
         {/* Tombol Action */}
         <button 
-          onClick={() => onClick(project)} // Panggil fungsi saat diklik
-          className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-blue-700 transition-colors mt-2"
+          onClick={() => onClick(project)} 
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-blue-700 transition-colors mt-1"
         >
-          Lihat Detail Case Study <ArrowUpRight size={16} />
+          Lihat Detail <ArrowUpRight size={14} />
         </button>
       </div>
     </div>

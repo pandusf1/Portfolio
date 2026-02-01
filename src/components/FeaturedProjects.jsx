@@ -13,7 +13,10 @@ const FeaturedProjects = () => {
   const detailSectionRef = useRef(null);
 
   useEffect(() => {
-  const query = '*[_type == "project" && isFeatured == true] | order(_updatedAt desc)[0...3]{..., slug}';
+    // UPDATED QUERY:
+    // 1. isFeatured == true (Hanya yang dicentang featured)
+    // 2. [0...4] (Ambil 4 data agar pas 1 baris penuh di layar besar)
+    const query = '*[_type == "project" && isFeatured == true] | order(_updatedAt desc)[0...4]{..., slug}';
 
     client.fetch(query)
       .then((data) => {
@@ -41,7 +44,7 @@ const FeaturedProjects = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-20 pb-10 bg-white">
       <div className="container mx-auto px-6">
         
         {/* Header Section */}
@@ -64,8 +67,9 @@ const FeaturedProjects = () => {
           </Link>
         </div>
 
-        {/* Grid Projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {/* Grid Projects (UPDATED: 4 Kolom) */}
+        {/* Perubahan ada di sini: lg:grid-cols-4 dan gap-6 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {projects.map((item) => (
             <ProjectCard 
               key={item._id} 
