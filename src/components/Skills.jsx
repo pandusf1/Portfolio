@@ -78,7 +78,7 @@ const Skills = () => {
              <span className="text-2xl font-bold text-slate-600">Odoo</span>
              <span className="text-2xl font-bold text-slate-600">Excel</span>
              <span className="text-2xl font-bold text-slate-600">VS Code</span>
-             <span className="text-2xl font-bold text-slate-600">Postman</span>
+             <span className="text-2xl font-bold text-slate-600">AI</span>
              <span className="text-2xl font-bold text-slate-600">GitHub</span>
            </div>
         </div>

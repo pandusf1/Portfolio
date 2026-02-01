@@ -10,14 +10,8 @@ const Journey = () => {
       {
         title: "STr Komputerisasi Akuntansi",
         place: "Politeknik Negeri Semarang",
-        date: "2023 - 2027",
+        date: "2023 - Now",
         description: "Lulus dengan predikat Cumlaude. Fokus skripsi pada Sistem Informasi Akuntansi."
-      },
-      {
-        title: "Odoo Functional Certification",
-        place: "Udemy / Official Odoo Partner",
-        date: "2023 - Sekarang",
-        description: "Mendalami modul Accounting, Inventory, dan Manufacturing untuk implementasi ERP."
       },
       {
         title: "SMA Jurusan IPS",
@@ -28,13 +22,7 @@ const Journey = () => {
     ],
     experience: [
       {
-        title: "Freelance Tax Assistant",
-        place: "Kantor Konsultan Pajak ABC",
-        date: "2021 - 2022",
-        description: "Membantu pelaporan SPT Tahunan Badan dan Orang Pribadi."
-      },
-      {
-        title: "Warehouse SPX",
+        title: "Freelance Warehouse SPX",
         place: "Gudang Semarang DC",
         date: "Jan 2023 - Agust 2025",
         description: "Mengelola paket pelanggan dari masuk ke gudang hingga keluar."
@@ -51,7 +39,7 @@ const Journey = () => {
         
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Qualification</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Journey</h2>
           <p className="text-slate-500">My Personal Journey</p>
         </div>
 
