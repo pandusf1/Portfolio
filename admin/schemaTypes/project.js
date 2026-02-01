@@ -6,6 +6,12 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'isFeatured',
+      title: 'Tampilkan di Home?',
+      type: 'boolean', 
+      initialValue: false, 
+    },
+    {
       name: 'title',
       title: 'Judul Project',
       type: 'string',
@@ -28,7 +34,7 @@ export default {
       title: 'Screenshot Project',
       type: 'image',
       options: {
-        hotspot: true, // Supaya bisa atur titik tengah gambar
+        hotspot: true, 
       },
     },
     {
@@ -40,15 +46,41 @@ export default {
       name: 'techStack',
       title: 'Tech Stack / Tools',
       type: 'array',
-      of: [{ type: 'string' }], // Bisa input banyak tool
+      of: [{ type: 'string' }], 
       options: {
         layout: 'tags'
       }
     },
     {
-      name: 'link',
-      title: 'Link Demo / GitHub',
-      type: 'url',
+      name: 'slug',
+      title: 'Slug (URL Link)',
+      type: 'slug',
+      options: {
+        source: 'title', 
+        maxLength: 96,
+      },
     },
+    {
+      name: 'gallery',
+      title: 'Galeri Foto (Slide)',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+      options: {
+        layout: 'grid',
+      },
+    },
+    {
+      name: 'liveUrl',
+      title: 'Link Website (Live Demo)',
+      type: 'url',
+      description: 'Contoh: https://google.com (Kosongkan jika proyek offline)',
+    },
+    {
+      name: 'content',
+      title: 'Cerita Case Study',
+      type: 'array',
+      of: [{type: 'block'}], 
+    },
+
   ],
 }

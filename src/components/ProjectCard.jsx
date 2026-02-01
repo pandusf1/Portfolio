@@ -1,20 +1,21 @@
 import { ArrowUpRight, FolderGit2 } from 'lucide-react';
 
-const ProjectCard = ({ project }) => {
+// Tambahkan prop "onClick"
+const ProjectCard = ({ project, onClick }) => {
   return (
-    <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500/50 hover:shadow-xl transition-all duration-300">
+    <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500/50 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
       
-      {/* Bagian Gambar (Placeholder Warna dulu) */}
-      <div className={`h-48 w-full ${project.image} flex items-center justify-center relative overflow-hidden`}>
-        {/* Overlay effect saat hover */}
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all"></div>
-        
-        {/* Ikon folder sebagai pengganti gambar sementara */}
-        <FolderGit2 className="text-white opacity-50 w-16 h-16 group-hover:scale-110 transition-transform duration-500" />
+      {/* Bagian Gambar */}
+      <div className="h-48 w-full bg-slate-100 flex items-center justify-center relative overflow-hidden">
+        {project.image ? (
+          <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+          <FolderGit2 className="text-slate-300 w-16 h-16" />
+        )}
       </div>
 
-      {/* Bagian Konten Teks */}
-      <div className="p-6">
+      {/* Bagian Konten */}
+      <div className="p-6 flex flex-col flex-grow">
         <div className="text-xs font-bold text-secondary uppercase tracking-wider mb-2">
           {project.category}
         </div>
@@ -23,12 +24,12 @@ const ProjectCard = ({ project }) => {
           {project.title}
         </h3>
         
-        <p className="text-slate-600 text-sm leading-relaxed mb-6">
+        <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
           {project.description}
         </p>
 
-        {/* Tags Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 mb-6 mt-auto">
           {project.techStack.map((tech, index) => (
             <span key={index} className="text-xs font-medium px-2 py-1 bg-slate-100 text-slate-600 rounded-md">
               {tech}
@@ -36,10 +37,13 @@ const ProjectCard = ({ project }) => {
           ))}
         </div>
 
-        {/* Link / Button */}
-        <a href="#" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-blue-600 transition-colors">
+        {/* Tombol Action */}
+        <button 
+          onClick={() => onClick(project)} // Panggil fungsi saat diklik
+          className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-blue-700 transition-colors mt-2"
+        >
           Lihat Detail Case Study <ArrowUpRight size={16} />
-        </a>
+        </button>
       </div>
     </div>
   );

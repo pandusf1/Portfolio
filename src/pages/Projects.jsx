@@ -1,26 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { client, urlFor } from '../client';
+
+// Pastikan import komponen sudah benar
 import ProjectCard from '../components/ProjectCard';
-import { client, urlFor } from '../client'; // 1. Import Client Sanity
+import ProjectDetailView from '../components/ProjectDetailView'; 
 
 const Projects = () => {
-  // State untuk menyimpan data ASLI dari Sanity
   const [projects, setProjects] = useState([]); 
-  // State untuk filter
   const [activeCategory, setActiveCategory] = useState('All');
-  // State untuk loading (biar user tau lagi ambil data)
   const [isLoading, setIsLoading] = useState(true);
+  
+  // State untuk menyimpan slug project yang sedang dibuka
+  const [selectedSlug, setSelectedSlug] = useState(null);
+  
+  // Ref untuk target scroll
+  const detailSectionRef = useRef(null);
 
-  // Daftar kategori untuk tombol filter (Harus sama dengan yang di Schema Sanity)
-  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Other'];
+  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Python Automation'];
 
-  // 2. Ambil data saat halaman dibuka
   useEffect(() => {
-    const query = '*[_type == "project"]'; // Ambil semua tipe 'project'
+    // Query data project
+    const query = '*[_type == "project"]{_id, title, category, description, techStack, image, slug}'; 
 
     client.fetch(query)
       .then((data) => {
-        setProjects(data); // Simpan data ke state
-        setIsLoading(false); // Matikan loading
+        setProjects(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error("Gagal ambil data:", err);
@@ -28,35 +33,44 @@ const Projects = () => {
       });
   }, []);
 
-  // 3. Logika penyaringan data (Updated)
+  const handleViewDetail = (project) => {
+    if (project.slug?.current) {
+      setSelectedSlug(project.slug.current);
+      setTimeout(() => {
+        if (detailSectionRef.current) {
+          detailSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      alert("Project ini tidak memiliki Slug (URL). Mohon generate di Sanity Studio.");
+    }
+  };
+
+  const handleCloseDetail = () => {
+    setSelectedSlug(null);
+  };
+
   const filteredProjects = activeCategory === 'All' 
     ? projects 
-    : projects.filter(item => {
-        // Jaga-jaga kalau kategori kosong, biar gak error
-        if (!item.category) return false;
-        // Cek apakah kategori di Sanity mengandung kata kunci tombol
-        return item.category.includes(activeCategory);
-      });
+    : projects.filter(item => item.category && item.category.includes(activeCategory));
 
   return (
     <section className="pt-32 pb-20 bg-slate-50 min-h-screen">
       <div className="container mx-auto px-6">
         
-        {/* Header Halaman */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">Portofolio & Studi Kasus</h1>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Kumpulan proyek implementasi ERP dan alat teknis yang telah saya kerjakan. 
-            Gunakan filter di bawah untuk memilah berdasarkan kategori.
+            Klik tombol detail pada kartu untuk melihat proses pengerjaan lengkap.
           </p>
         </div>
 
-        {/* Tombol Filter Kategori */}
+        {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => { setActiveCategory(category); setSelectedSlug(null); }}
               className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeCategory === category
                   ? 'bg-primary text-white shadow-lg scale-105' 
@@ -68,36 +82,45 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Kondisi Loading */}
+        {/* Grid Project Cards */}
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         ) : (
-          /* Grid Hasil Proyek */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((item) => (
-                <ProjectCard 
-                  key={item._id} // Pakai _id dari Sanity
-                  project={{
-                    title: item.title,
-                    category: item.category,
-                    description: item.description,
-                    techStack: item.techStack || [], // Default array kosong biar gak error
-                    // Konversi gambar Sanity ke URL asli
-                    image: item.image ? urlFor(item.image).url() : null 
-                  }} 
-                />
-              ))
-            ) : (
-              // Tampilan kalau tidak ada proyek
-              <div className="col-span-full text-center py-20 text-slate-400">
-                <p>Belum ada proyek di kategori <span className="font-semibold text-slate-600">"{activeCategory}"</span>.</p>
-              </div>
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {filteredProjects.map((item) => (
+              <ProjectCard 
+                key={item._id} 
+                project={{
+                  ...item, 
+                  // --- PENGAMAN DATA (FIX DISINI) ---
+                  techStack: item.techStack || [], // Kalau kosong, kasih array kosong biar gak crash
+                  image: item.image ? urlFor(item.image).url() : null // Konversi gambar aman
+                }} 
+                onClick={handleViewDetail} 
+              />
+            ))}
           </div>
         )}
+
+        {/* --- DETAIL PROJECT SECTION --- */}
+        <div ref={detailSectionRef} className="scroll-mt-32"> 
+          {selectedSlug && (
+            <div className="animate-fade-in py-10 border-t border-slate-200">
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="h-1 flex-grow bg-slate-200 rounded"></div>
+                    <span className="text-slate-400 text-sm font-semibold uppercase tracking-widest">Detail Project</span>
+                    <div className="h-1 flex-grow bg-slate-200 rounded"></div>
+                </div>
+                
+                <ProjectDetailView 
+                  slug={selectedSlug} 
+                  onClose={handleCloseDetail} 
+                />
+            </div>
+          )}
+        </div>
 
       </div>
     </section>
