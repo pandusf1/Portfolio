@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const menuItems = [
     { name: 'Home', path: '/' },
-    { name: 'Projects Showcase', path: '/projects' }, // Highlight utama kamu
+    { name: 'Projects Showcase', path: '/projects' }, 
     { name: 'About', path: '/about' },
   ];
 
@@ -33,10 +33,10 @@ const Navbar = () => {
           ))}
           
           {/* Tombol CV */}
-          <button className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-medium hover:bg-slate-800 transition-all text-sm">
+          <a href="/cv.pdf" target='_blank' className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-medium hover:bg-slate-800 transition-all text-sm">
             <Download size={18} />
             <span>Download CV</span>
-          </button>
+          </a>
         </div>
 
         {/* Mobile Menu Button (Hamburger) */}

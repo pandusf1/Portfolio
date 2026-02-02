@@ -12,10 +12,10 @@ function App() {
         <Navbar />
         
         <div className="flex-grow">
-          <ScrollToTop /> {/* Opsional: Biar pas ganti halaman selalu mulai dari atas */}
+          <ScrollToTop /> 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} /> {/* <-- Panggil di sini */}
+            <Route path="/projects" element={<Projects />} /> 
             <Route path="/about" element={<About />} />
           </Routes>
         </div>
