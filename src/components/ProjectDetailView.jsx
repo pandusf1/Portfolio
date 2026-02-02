@@ -145,17 +145,17 @@ const ProjectDetailView = ({ slug, onClose }) => {
               <div className="flex items-center gap-1.5">
                   <User size={14} className="text-blue-500" />
                   <span className="font-semibold text-slate-700">User:</span>
-                  {project.target}
+                  {project.target ? project.target : '-'}
               </div>
               <div className="flex items-center gap-1.5">
                   <Calendar size={14} className="text-blue-500" />
                   <span className="font-semibold text-slate-700">Year:</span>
-                  {project.year}
+                  {project.year ? project.year: '-'}
               </div>
               <div className="flex items-center gap-1.5">
                   <Tag size={14} className="text-blue-500" />
                   <span className="font-semibold text-slate-700">Stack:</span> 
-                  {Array.isArray(project.techStack) ? project.techStack.join(", ") : project.techStack}
+                  {Array.isArray(project.techStack) ? project.techStack.join(", ") : project.techStack || '-'}
               </div>
           </div>
 
