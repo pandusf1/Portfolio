@@ -37,6 +37,23 @@ const ProjectDetailView = ({ slug, onClose }) => {
   if (project.image) allImages.push(project.image);
   if (project.gallery) allImages.push(...project.gallery);
 
+  const myPortableTextComponents = {
+    block: {
+      // Setiap paragraf 'normal' akan diberi margin-bottom (mb-4)
+      normal: ({children}) => <p className="mb-4 leading-relaxed">{children}</p>,
+      // Opsional: Kalau ada heading (judul) di dalam deskripsi
+      h1: ({children}) => <h1 className="text-2xl font-bold mb-4 mt-6">{children}</h1>,
+      h2: ({children}) => <h2 className="text-xl font-bold mb-3 mt-5">{children}</h2>,
+      h3: ({children}) => <h3 className="text-lg font-bold mb-2 mt-4">{children}</h3>,
+      // Opsional: Styling untuk list (bullet points)
+      bullet: ({children}) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
+    },
+    // Styling untuk tulisan Bold/Strong agar benar-benar tebal
+    marks: {
+      strong: ({children}) => <strong className="font-bold text-slate-800">{children}</strong>,
+    },
+  };
+
   return (
     <>
       {/* CSS Khusus untuk Scrollbar Tipis */}
@@ -159,12 +176,11 @@ const ProjectDetailView = ({ slug, onClose }) => {
               </div>
           </div>
 
-          {/* Deskripsi / Rich Text */}
           <div className="prose prose-sm prose-slate max-w-none text-slate-600 leading-relaxed text-sm">
              {project.content ? (
-               <PortableText value={project.content} />
+               <PortableText value={project.content} components={myPortableTextComponents} />
              ) : (
-               <p className="italic text-slate-400 text-xs">Deskripsi detail proyek belum tersedia.</p>
+               <p className="italic text-black text-xs">Deskripsi detail proyek belum tersedia.</p>
              )}
           </div>
           
