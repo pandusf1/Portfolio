@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold text-white mb-2">Portfolio<span className="text-secondary">.</span></h3>
             <p className="text-sm text-slate-400">
-              © {new Date().getFullYear()} ERP Functional Consultant. <br className="hidden md:block"/>
+              © 2026 Pandu Safrilio Fadhil. <br className="hidden md:block"/>
               All rights reserved.
             </p>
           </div>

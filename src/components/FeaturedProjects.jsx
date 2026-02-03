@@ -13,9 +13,6 @@ const FeaturedProjects = () => {
   const detailSectionRef = useRef(null);
 
   useEffect(() => {
-    // UPDATED QUERY:
-    // 1. isFeatured == true (Hanya yang dicentang featured)
-    // 2. [0...4] (Ambil 4 data agar pas 1 baris penuh di layar besar)
     const query = '*[_type == "project" && isFeatured == true] | order(_updatedAt desc)[0...4]{..., slug}';
 
     client.fetch(query)
@@ -54,13 +51,13 @@ const FeaturedProjects = () => {
               Selected Projects
             </h2>
             <p className="text-slate-600 max-w-xl">
-              Beberapa studi kasus implementasi ERP dan pengembangan sistem terbaru.
+              Beberapa eksperimen project dan pengembangan sistem.
             </p>
           </div>
           
           {/* Tombol ke Halaman Semua Project */}
           <Link 
-            to="/projects" 
+            to="/explorations" 
             className="hidden md:inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
           >
             Lihat Semua Project <ArrowRight size={20} />

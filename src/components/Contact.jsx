@@ -101,10 +101,6 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className="relative z-10 mt-12 pt-8 border-t border-slate-800 text-xs text-slate-500">
-                    &copy; 2024 Aspiring ERP Consultant
-                </div>
             </div>
 
             {/* Bagian Kanan: Formulir + Switcher */}
@@ -120,7 +116,7 @@ const Contact = () => {
                             : 'text-slate-500 hover:text-slate-700'
                         }`}
                     >
-                        <Mail size={16} /> Via Email
+                        <Mail size={16} /> Email
                     </button>
                     <button 
                          onClick={() => setSendMethod('whatsapp')}
@@ -130,7 +126,7 @@ const Contact = () => {
                             : 'text-slate-500 hover:text-slate-700'
                         }`}
                     >
-                        <MessageCircle size={16} /> Via WhatsApp
+                        <MessageCircle size={16} /> WhatsApp
                     </button>
                 </div>
 

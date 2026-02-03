@@ -5,27 +5,26 @@ const Skills = () => {
     {
       title: "Functional & Accounting",
       icon: <Calculator className="w-6 h-6 text-blue-600" />,
-      description: "Pemahaman mendalam tentang alur bisnis dan standar akuntansi (PSAK).",
+      description: "Pemahaman mendalam tentang alur bisnis dan standar akuntansi.",
       skills: [
         "Financial Reporting (Neraca/Laba Rugi)",
-        "Cost Accounting (HPP & Overhead)",
-        "Bank Reconciliation",
+        "COGS & Inventory Valuation (HPP & FIFO/Avg)",
         "Tax Configuration (PPN/PPh)",
-        "Inventory Valuation (FIFO/Avg)",
-        "Fixed Asset Management"
+        "Fixed Asset Management",
+        "Procure-to-Pay Cycle (Alur beli sampai bayar)",
+        "Order-to-Cash Cycle (Alur jual sampai terima uang)"
       ]
     },
     {
-      title: "Technical & ERP Implementation",
+      title: "Technical & Implementation",
       icon: <Database className="w-6 h-6 text-teal-600" />,
       description: "Keahlian teknis dalam konfigurasi sistem dan manajemen data.",
       skills: [
-        "Odoo 16/17 (Accounting, Sales, Inv, Mfg)",
-        "Data Migration (Excel to Odoo)",
+        "Odoo (Accounting, Sales, Purchase, Inv, Mfg)",
         "User Access Rights Management",
-        "React.js & Frontend Basic",
-        "Python Scripting (Automation)",
-        "PostgreSQL (Basic Query)"
+        "Frontend Basic",
+        "Python Basic Scripting",
+        "SQL (Basic Query)"
       ]
     }
   ];
@@ -71,15 +70,16 @@ const Skills = () => {
         {/* Bagian Tools/Logo (Opsional - Biar keren) */}
         <div className="mt-16 pt-8 border-t border-slate-200">
            <p className="text-center text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">
-             Tools I Use Daily
+             Tools Use Daily
            </p>
            <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
              {/* Logo Teks Sederhana */}
              <span className="text-2xl font-bold text-slate-600">Odoo</span>
              <span className="text-2xl font-bold text-slate-600">Excel</span>
              <span className="text-2xl font-bold text-slate-600">VS Code</span>
-             <span className="text-2xl font-bold text-slate-600">AI</span>
+             <span className="text-2xl font-bold text-slate-600">AI Co-pilot</span>
              <span className="text-2xl font-bold text-slate-600">GitHub</span>
+             <span className="text-2xl font-bold text-slate-600">SQL</span>
            </div>
         </div>
 

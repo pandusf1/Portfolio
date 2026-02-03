@@ -1,9 +1,6 @@
 import { BookOpen, Target, Coffee } from 'lucide-react';
 import Contact from '../components/Contact'; // Import Form Kontak
-// GANTI DENGAN FOTO KAMU (Pastikan file ada di folder src/assets)
-// Kalau belum ada foto, pakai link dummy dulu:
 const fotoProfil = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"; 
-// import fotoProfil from '../assets/foto-profil.jpg'; // <-- Pakai ini kalau sudah ada file
 
 const About = () => {
   return (
@@ -19,7 +16,6 @@ const About = () => {
           
           {/* BAGIAN FOTO (KIRI) */}
           <div className="flex-shrink-0 mx-auto md:mx-0">
-             {/* Saya besarkan sedikit fotonya biar seimbang dengan teks disampingnya */}
              <div className="w-40 h-40 md:w-48 md:h-48 rounded-3xl overflow-hidden border-4 border-slate-100 shadow-xl">
                <img 
                  src={fotoProfil} 
@@ -32,26 +28,30 @@ const About = () => {
           {/* BAGIAN TEKS (KANAN) */}
           <div className="flex-1 space-y-6 text-lg text-slate-600 leading-relaxed text-justify md:text-left">
             <p>
-              Halo! Saya <span className="font-bold text-slate-800">Pandu Safrilio Fadhil</span>, seorang lulusan STr Komputerisasi Akuntansi yang menemukan *passion* di dunia sistem informasi akuntansi, khususnya sistem ERP.
+              Halo! Saya <span className="font-bold text-slate-800">Pandu Safrilio Fadhil</span>, seorang mahasiswa D4 Komputerisasi Akuntansi di Politeknik Negeri Semarang yang menemukan *passion* di dunia sistem informasi akuntansi, khususnya sistem ERP.
             </p>
             
             <p>
-              Perjalanan saya dimulai ketika menyadari bahwa banyak masalah akuntansi di lapangan sebenarnya bukan karena manusianya, tapi karena sistem yang tidak terintegrasi. Sejak itu, saya mendalami <b>Odoo ERP</b> untuk menjembatani kesenjangan antara tim Keuangan dan Operasional.
+              Ketertarikan saya pada akuntansi bermula saat duduk di bangku kelas 12 SMA. Saat itu, saya menikmati proses pembukuan manual menyeimbangkan debit dan kredit memberikan kepuasan tersendiri. Namun, saya segera menyadari satu kelemahan fatal yaitu Human Error. Satu kesalahan input kecil bisa merusak seluruh laporan, dan proses perbaikannya memakan waktu lama.            
             </p>
+          </div>
+        </div>
 
+          <div className="pt-5 flex-1 space-y-6 text-lg text-slate-600 leading-relaxed text-justify md:text-left">
             <p>
-                Saat ini, fokus utama saya adalah membantu bisnis melakukan digitalisasi pembukuan, mulai dari manajemen stok hingga pelaporan keuangan otomatis.
+              Perspektif saya berubah total semenjak kuliah. Saya menyadari bahwa akuntansi modern tidak lagi soal 'siapa yang paling teliti mencatat', tapi 'siapa yang bisa membangun sistem paling efisien'. Rasa ingin tahu mendorong untuk belajar lebih jauh dengan mencoba hal baru secara otodidak, saya suka bereksperimen dengan teknologi baru seperti integrasi AI dan Cloud Database untuk menciptakan solusi nyata yang mempermudah pekerjaan manusia.
+            </p>
+            <p>
+              Di sinilah saya tertarik pada logika pemrograman. Saya mulai melihat kode bukan sebagai bahasa mesin yang rumit, melainkan sebagai alat untuk menciptakan otomatisasi. Kini, fokus saya bukan lagi sekadar menjadi pengguna aplikasi, tapi menjadi kreator solusi bisnis merancang sistem yang memastikan data akurat, transparan, dan bebas dari kesalahan manusia.
             </p>
           </div>
 
-        </div>
-
-        {/* --- KOTAK VISI/MISI (Tetap di bawah) --- */}
+        {/* ---  VISI/MISI --- */}
         <div className="grid md:grid-cols-3 gap-6 mt-16">
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
             <BookOpen className="text-secondary mb-4" size={32} />
-            <h3 className="font-bold text-slate-900 mb-2">Background</h3>
-            <p className="text-sm text-slate-600">Sarjana Akuntansi dengan pemahaman kuat tentang PSAK dan Perpajakan.</p>
+            <h3 className="font-bold text-slate-900 mb-2">Academic Base</h3>
+            <p className="text-sm text-slate-600">Mahasiswa Semester 6 D4 Komputerisasi Akuntansi. Memadukan pemahaman standar akuntansi dengan logika sistem informasi.</p>
           </div>
           
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
@@ -62,17 +62,13 @@ const About = () => {
 
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
             <Coffee className="text-orange-500 mb-4" size={32} />
-            <h3 className="font-bold text-slate-900 mb-2">Next Goal</h3>
-            <p className="text-sm text-slate-600">Memperdalam SAP S/4HANA Finance & Python Scripting lanjutan.</p>
+            <h3 className="font-bold text-slate-900 mb-2">Career Objective</h3>
+            <p className="text-sm text-slate-600">Memulai karier sebagai Junior ERP Consultant atau System Analyst, membantu perusahaan bertransformasi digital secara efisien.</p>
           </div>
         </div>
 
-        {/* Garis Pemisah */}
         <div className="mt-20 border-t border-slate-100"></div>
-
-        {/* --- FORM KONTAK (PALING BAWAH) --- */}
         <Contact />
-
       </div>
     </section>
   );
