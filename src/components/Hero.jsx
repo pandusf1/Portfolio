@@ -9,7 +9,7 @@ const Hero = () => {
           
           {/* --- KOLOM KIRI: NARASI (Tetap seperti yang kamu suka) --- */}
           <div className="w-full lg:w-1/2 space-y-6 z-10">
-            <p className="text-slate-500 font-medium text-lg flex items-center gap-2">
+            <p className="text-slate-500 font-medium text-lg flex items-center gap-2 sm:mt-10">
               <span className="w-8 h-[2px] bg-blue-500 inline-block"></span>
               Hi, I'm <span className="text-slate-900 font-bold">Pandu Safrilio.</span>
             </p>

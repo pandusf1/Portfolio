@@ -94,7 +94,7 @@ const Projects = () => {
                 key={item._id} 
                 project={{
                   ...item, 
-                  // --- PENGAMAN DATA (FIX DISINI) ---
+                  
                   techStack: item.techStack || [], // Kalau kosong, kasih array kosong biar gak crash
                   image: item.image ? urlFor(item.image).url() : null // Konversi gambar aman
                 }} 
