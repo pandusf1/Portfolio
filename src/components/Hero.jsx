@@ -9,7 +9,7 @@ const Hero = () => {
           
           {/* --- KOLOM KIRI: NARASI (Tetap seperti yang kamu suka) --- */}
           <div className="w-full lg:w-1/2 space-y-6 z-10">
-            <p className="text-slate-500 font-medium text-lg flex items-center gap-2 sm:mt-10">
+            <p className="text-slate-500 font-medium text-lg flex items-center gap-2 max-sm:pt-10 sm:pt-10 xl:-mt-16 xl:-mb-2">
               <span className="w-8 h-[2px] bg-blue-500 inline-block"></span>
               Hi, I'm <span className="text-slate-900 font-bold">Pandu Safrilio.</span>
             </p>
@@ -28,7 +28,7 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="flex gap-6 mt-2 border-t border-slate-200/60 py-4">
+            <div className="flex gap-6 mt-2 border-t border-slate-200/60 py-2">
                 <div className="flex items-start gap-3">
                     <div className="p-2 bg-blue-50 rounded-lg text-blue-600 mt-1">
                        <Terminal size={18} />
@@ -49,7 +49,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-1">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/projects" 
                 className="inline-flex justify-center items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-slate-800 transition-all hover:translate-y-[-2px] shadow-lg shadow-blue-900/10"
