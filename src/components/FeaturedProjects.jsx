@@ -106,7 +106,7 @@ const FeaturedProjects = () => {
         {/* Tombol Mobile (View All) */}
         <div className="text-center md:hidden mt-8">
            <Link 
-            to="/exporations" 
+            to="/explorations" 
             className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 px-6 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors"
           >
             Lihat Semua Project <ArrowRight size={18} />
