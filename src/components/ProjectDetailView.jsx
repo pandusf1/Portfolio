@@ -101,7 +101,7 @@ const ProjectDetailView = ({ slug, onClose }) => {
           <X size={18} />
         </button>
 
-        {/* --- BAGIAN GALERI (DIKECILKAN LAGI) --- */}
+        {/* --- BAGIAN GALERI --- */}
         <div className="bg-slate-50/50 pt-3 pb-1 border-b border-slate-200">
           <div className="px-5 mb-1 flex items-center gap-1">
              <Maximize2 size={10} className="text-slate-400"/>
@@ -113,10 +113,9 @@ const ProjectDetailView = ({ slug, onClose }) => {
               allImages.map((img, index) => (
                 <div 
                   key={index} 
-                  className="snap-center flex-shrink-0 cursor-zoom-in relative group"
+                  className="snap-center snap-always flex-shrink-0 cursor-zoom-in relative group"
                   onClick={() => setSelectedImage(img)}
                 >
-                  {/* UKURAN GAMBAR DIKECILKAN LAGI (h-32 di HP, h-48 di Laptop) */}
                   <img 
                     src={urlFor(img).height(200).url()} 
                     alt={`Screenshot ${index + 1}`} 
@@ -132,7 +131,7 @@ const ProjectDetailView = ({ slug, onClose }) => {
           </div>
         </div>
 
-        {/* --- KONTEN TEXT (PADDING DIKECILKAN) --- */}
+        {/* KONTEN TEXT */}
         <div className="p-5 md:p-6"> 
           
           <div className="flex flex-col md:flex-row justify-between items-start gap-3 mb-4">
@@ -157,7 +156,7 @@ const ProjectDetailView = ({ slug, onClose }) => {
             )}
           </div>
 
-          {/* Metadata Row - Compact */}
+          {/* Metadata Row */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-slate-500 text-xs mb-5 border-y border-slate-50 py-3 bg-slate-50/30 rounded px-2">
               <div className="flex items-center gap-1.5">
                   <User size={14} className="text-blue-500" />

@@ -107,7 +107,7 @@ const Projects = () => {
             {filteredProjects.map((item, index) => (
               <div 
                 key={item._id || index}
-                className="w-full md:w-auto flex-none snap-center px-6 md:px-0"
+                className="w-full md:w-auto flex-none snap-center snap-always px-6 md:px-0"
               >
                 <ProjectCard 
                   project={{...item, techStack: item.techStack || [], image: item.image ? urlFor(item.image).url() : null}} 
