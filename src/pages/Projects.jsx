@@ -9,6 +9,7 @@ const Projects = () => {
   const [projects, setProjects] = useState([]); 
   const [activeCategory, setActiveCategory] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
+  const [activeSlide, setActiveSlide] = useState(0);
   
   // State untuk menyimpan slug project yang sedang dibuka
   const [selectedSlug, setSelectedSlug] = useState(null);
@@ -17,6 +18,16 @@ const Projects = () => {
   const detailSectionRef = useRef(null);
 
   const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Python Automation', 'Other'];
+
+  // Fungsi untuk mendeteksi scroll
+  const handleScroll = (e) => {
+    if (!e.target.firstChild) return;
+    const scrollLeft = e.target.scrollLeft;
+    const cardWidth = e.target.firstChild.offsetWidth;
+    // Hitung index berdasarkan posisi scroll
+    const newIndex = Math.round(scrollLeft / cardWidth);
+    setActiveSlide(newIndex);
+  };
 
   useEffect(() => {
     // Query data project
@@ -85,20 +96,38 @@ const Projects = () => {
         {/* Grid Project Cards */}
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
-             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {filteredProjects.map((item) => (
-              <ProjectCard 
-                key={item._id} 
-                project={{
-                  ...item, 
+          <div 
+            onScroll={handleScroll} 
+            className="flex -mx-6 md:mx-0 md:grid md:grid-cols-4 gap-0 md:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide"
+            style={{ scrollBehavior: 'smooth' }}
+          >
+            {filteredProjects.map((item, index) => (
+              <div 
+                key={item._id || index}
+                className="w-full md:w-auto flex-none snap-center px-6 md:px-0"
+              >
+                <ProjectCard 
+                  project={{...item, techStack: item.techStack || [], image: item.image ? urlFor(item.image).url() : null}} 
+                  onClick={handleViewDetail} 
                   
-                  techStack: item.techStack || [], // Kalau kosong, kasih array kosong biar gak crash
-                  image: item.image ? urlFor(item.image).url() : null // Konversi gambar aman
-                }} 
-                onClick={handleViewDetail} 
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        {!isLoading && (
+          <div className="flex justify-center gap-2 mt-4 md:hidden">
+            {filteredProjects.map((_, index) => (
+              <div
+                key={index}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeSlide === index 
+                    ? "w-6 bg-blue-600" 
+                    : "w-2 bg-slate-300"
+                }`}
               />
             ))}
           </div>
@@ -121,7 +150,6 @@ const Projects = () => {
             </div>
           )}
         </div>
-
       </div>
     </section>
   );

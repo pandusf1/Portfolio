@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import Projects from './pages/Projects'; // <-- Import halaman Projects yang baru
+import Projects from './pages/Projects'; 
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <ScrollToTop /> 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/explorations" element={<Projects />} /> 
+            <Route path="/projects" element={<Projects />} /> 
             <Route path="/about" element={<About />} />
           </Routes>
         </div>
