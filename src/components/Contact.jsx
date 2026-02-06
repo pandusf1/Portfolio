@@ -62,48 +62,8 @@ const Contact = () => {
             <p className="text-slate-600">Pilih metode yang nyaman bagi Anda untuk berdiskusi.</p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-12 bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 max-w-5xl mx-auto">
-            
-            {/* Bagian Kiri: Info Kontak (Tetap Sama) */}
-            <div className="w-full md:w-5/12 bg-slate-900 p-10 text-white flex flex-col justify-between relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary rounded-full blur-3xl opacity-20 -ml-10 -mb-10"></div>
-                
-                <div className="relative z-10">
-                    <h3 className="text-2xl font-bold mb-6">Contact Info</h3>
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-blue-400">
-                                <Mail size={20} />
-                            </div>
-                            <div>
-                                <p className="text-xs text-slate-400 uppercase tracking-wider">Email</p>
-                                <p className="font-medium text-sm md:text-base">pandusf1@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-green-400">
-                                <Phone size={20} />
-                            </div>
-                            <div>
-                                <p className="text-xs text-slate-400 uppercase tracking-wider">WhatsApp</p>
-                                <p className="font-medium text-sm md:text-base">+62 857 8911 8146</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-4">
-                             <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-red-400">
-                                <MapPin size={20} />
-                            </div>
-                            <div>
-                                <p className="text-xs text-slate-400 uppercase tracking-wider">Location</p>
-                                <p className="font-medium text-sm md:text-base">Mranggen, Kab. Demak, Indonesia</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Bagian Kanan: Formulir + Switcher */}
+        <div className="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 max-w-5xl mx-auto">
+            {/* Bagian Kiri: Formulir + Switcher */}
             <div className="w-full md:w-7/12 p-8 md:p-10">
                 
                 {/* --- TAB SWITCHER (PILIHAN) --- */}
@@ -181,6 +141,46 @@ const Contact = () => {
                     </button>
                 </form>
             </div>
+
+            {/* Bagian Kanan: Info Kontak */}
+            <div className="w-full md:w-5/12 bg-slate-900 p-10 text-white flex flex-col justify-between relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary rounded-full blur-3xl opacity-20 -ml-10 -mb-10"></div>
+                
+                <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-6">Contact Info</h3>
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-blue-400">
+                                <Mail size={20} />
+                            </div>
+                            <div>
+                                <p className="text-xs text-slate-400 uppercase tracking-wider">Email</p>
+                                <p className="font-medium text-sm md:text-base">pandusf1@gmail.com</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-green-400">
+                                <Phone size={20} />
+                            </div>
+                            <div>
+                                <p className="text-xs text-slate-400 uppercase tracking-wider">WhatsApp</p>
+                                <p className="font-medium text-sm md:text-base">+62 857 8911 8146</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                             <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-red-400">
+                                <MapPin size={20} />
+                            </div>
+                            <div>
+                                <p className="text-xs text-slate-400 uppercase tracking-wider">Location</p>
+                                <p className="font-medium text-sm md:text-base">Mranggen, Kab. Demak, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
       </div>

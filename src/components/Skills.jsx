@@ -9,7 +9,6 @@ const Skills = () => {
       skills: [
         "Financial Reporting (Neraca/Laba Rugi)",
         "COGS & Inventory Valuation (HPP & FIFO/Avg)",
-        "Tax Configuration (PPN/PPh)",
         "Fixed Asset Management",
         "Procure-to-Pay Cycle (Alur beli sampai bayar)",
         "Order-to-Cash Cycle (Alur jual sampai terima uang)"
@@ -38,7 +37,7 @@ const Skills = () => {
             Technical Proficiency
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Kombinasi pemahaman akuntansi yang kuat dengan kemampuan teknis untuk menerjemahkan kebutuhan bisnis ke dalam sistem.
+            Kombinasi pemahaman akuntansi dengan kemampuan teknis untuk menerjemahkan kebutuhan bisnis ke dalam sistem.
           </p>
         </div>
 

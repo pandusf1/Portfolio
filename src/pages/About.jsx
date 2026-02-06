@@ -28,7 +28,7 @@ const About = () => {
           {/* BAGIAN TEKS (KANAN) */}
           <div className="flex-1 space-y-6 text-lg text-slate-600 leading-relaxed text-justify md:text-left">
             <p>
-              Halo! Saya <span className="font-bold text-slate-800">Pandu Safrilio Fadhil</span>, seorang mahasiswa D4 Komputerisasi Akuntansi di Politeknik Negeri Semarang yang menemukan *passion* di dunia sistem informasi akuntansi, khususnya sistem ERP.
+              Halo! Saya <span className="font-bold text-slate-800">Pandu Safrilio Fadhil</span>, seorang mahasiswa D4 Komputerisasi Akuntansi di Politeknik Negeri Semarang yang menemukan passion di dunia sistem informasi akuntansi, khususnya sistem ERP.
             </p>
             
             <p>
@@ -51,13 +51,13 @@ const About = () => {
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
             <BookOpen className="text-secondary mb-4" size={32} />
             <h3 className="font-bold text-slate-900 mb-2">Academic Base</h3>
-            <p className="text-sm text-slate-600">Mahasiswa Semester 6 D4 Komputerisasi Akuntansi. Memadukan pemahaman standar akuntansi dengan logika sistem informasi.</p>
+            <p className="text-sm text-slate-600">Mahasiswa Komputerisasi Akuntansi yang hobby mencoba hal baru khususnya akuntansi & sistem informasi.</p>
           </div>
           
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
             <Target className="text-blue-600 mb-4" size={32} />
             <h3 className="font-bold text-slate-900 mb-2">Focus</h3>
-            <p className="text-sm text-slate-600">Implementasi Odoo (Accounting, Inventory, Purchase, Sales) & Integrasi Data.</p>
+            <p className="text-sm text-slate-600">Implementasi Logika Akuntansi dalam ERP & solusi teknis.</p>
           </div>
 
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
