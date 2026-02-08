@@ -32,9 +32,7 @@ export default {
       type: 'string',
       options: {
         list: [
-          { title: 'Odoo ERP', value: 'Odoo ERP' },
-          { title: 'Supply Chain', value: 'Supply Chain' },
-          { title: 'Python Automation', value: 'Python Automation' },
+          { title: 'ERP', value: 'ERP' },
           { title: 'Other', value: 'Other' },
         ],
       },
@@ -89,7 +87,21 @@ export default {
       name: 'content',
       title: 'Cerita Case Study',
       type: 'array',
-      of: [{type: 'block'}], 
+      of: [
+    {
+      type: 'block', 
+      styles: [
+        {title: 'Normal', value: 'normal'},
+        {title: 'H1', value: 'h1'},
+        {title: 'H2', value: 'h2'},
+        {title: 'Quote', value: 'blockquote'},
+      ],
+      lists: [
+        {title: 'Bullet', value: 'bullet'}, 
+        {title: 'Number', value: 'number'}
+      ]
+    }
+  ], 
     },
 
   ],

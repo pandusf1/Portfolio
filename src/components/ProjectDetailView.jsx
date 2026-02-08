@@ -11,7 +11,6 @@ const ProjectDetailView = ({ slug, onClose }) => {
   useEffect(() => {
     if (!slug) return;
     setLoading(true);
-    // Pastikan mengambil field targetUser, year, dll dari Sanity
     const query = `*[_type == "project" && slug.current == "${slug}"][0]{
       ...,
       gallery[]
@@ -39,16 +38,18 @@ const ProjectDetailView = ({ slug, onClose }) => {
 
   const myPortableTextComponents = {
     block: {
-      // Setiap paragraf 'normal' akan diberi margin-bottom (mb-4)
-      normal: ({children}) => <p className="mb-4 leading-relaxed">{children}</p>,
-      // Opsional: Kalau ada heading (judul) di dalam deskripsi
-      h1: ({children}) => <h1 className="text-2xl font-bold mb-4 mt-6">{children}</h1>,
-      h2: ({children}) => <h2 className="text-xl font-bold mb-3 mt-5">{children}</h2>,
-      h3: ({children}) => <h3 className="text-lg font-bold mb-2 mt-4">{children}</h3>,
-      // Opsional: Styling untuk list (bullet points)
-      bullet: ({children}) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
-    },
-    // Styling untuk tulisan Bold/Strong agar benar-benar tebal
+    normal: ({children}) => <p className="mb-4 text-slate-600 leading-relaxed">{children}</p>,
+    h1: ({children}) => <h1 className="text-2xl font-bold mb-4 mt-6 text-slate-800">{children}</h1>,
+    h2: ({children}) => <h2 className="text-xl font-bold mb-3 mt-6 text-slate-800">{children}</h2>,
+    h3: ({children}) => <h2 className="text-lg font-bold mb-1 mt-6 text-slate-800">{children}</h2>,
+  },
+  list: {
+    bullet: ({children}) => <ul className="list-disc ml-5 mb-4 space-y-2 text-slate-600">{children}</ul>,
+    number: ({children}) => <ol className="list-decimal ml-5 mb-4 space-y-2 text-slate-600">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({children}) => <li>{children}</li>,
+  },
     marks: {
       strong: ({children}) => <strong className="font-bold text-slate-800">{children}</strong>,
     },
@@ -91,9 +92,7 @@ const ProjectDetailView = ({ slug, onClose }) => {
       )}
 
       {/* --- KONTEN DETAIL UTAMA --- */}
-      {/* Container utama dibuat lebih rounded dan compact */}
       <div className="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden animate-fade-in-up relative mt-4">
-        
         <button 
           onClick={onClose}
           className="absolute top-2 right-2 z-20 bg-white/90 hover:bg-red-50 text-slate-400 hover:text-red-500 p-1 rounded-full shadow-sm transition-all border border-slate-200"
@@ -133,7 +132,6 @@ const ProjectDetailView = ({ slug, onClose }) => {
 
         {/* KONTEN TEXT */}
         <div className="p-5 md:p-6"> 
-          
           <div className="flex flex-col md:flex-row justify-between items-start gap-3 mb-4">
             <div>
                <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-1 leading-tight">{project.title}</h2>

@@ -10,11 +10,10 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold text-white mb-2">Portfolio<span className="text-secondary">.</span></h3>
             <p className="text-sm text-slate-400">
-              © 2026 Pandu Safrilio Fadhil. <br className="hidden md:block"/>
+              © {new Date().getFullYear()} Pandu Safrilio Fadhil. <br className="hidden md:block"/>
               All rights reserved.
             </p>
           </div>
-
           {/* Social Links */}
           <div className="flex gap-6">
             <a href="#" target='_blank' className="hover:text-secondary transition-colors" aria-label="LinkedIn">

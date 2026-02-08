@@ -17,7 +17,7 @@ const Projects = () => {
   // Ref untuk target scroll
   const detailSectionRef = useRef(null);
 
-  const categories = ['All', 'Odoo ERP', 'Supply Chain', 'Python Automation', 'Other'];
+  const categories = ['All', 'ERP', 'Other'];
 
   // Fungsi untuk mendeteksi scroll
   const handleScroll = (e) => {
@@ -31,7 +31,7 @@ const Projects = () => {
 
   useEffect(() => {
     // Query data project
-    const query = '*[_type == "project"]{_id, title, category, description, techStack, image, slug}'; 
+    const query = '*[_type == "project"]{_id, title, category, description, techStack, image, slug, content}'; 
 
     client.fetch(query)
       .then((data) => {

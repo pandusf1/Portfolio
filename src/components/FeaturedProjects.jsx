@@ -16,7 +16,7 @@ const FeaturedProjects = () => {
   
 
   useEffect(() => {
-    const query = '*[_type == "project" && isFeatured == true] | order(_updatedAt desc)[0...4]{..., slug}';
+    const query = '*[_type == "project" && isFeatured == true] | order(_updatedAt desc)[0...4]{..., slug, content}';
 
     client.fetch(query)
       .then((data) => {
