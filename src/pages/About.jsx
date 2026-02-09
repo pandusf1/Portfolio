@@ -51,7 +51,7 @@ const About = () => {
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">
             <BookOpen className="text-secondary mb-4" size={32} />
             <h3 className="font-bold text-slate-900 mb-2">Academic Base</h3>
-            <p className="text-sm text-slate-600">Mahasiswa Komputerisasi Akuntansi yang hobby mencoba hal baru khususnya akuntansi & sistem informasi.</p>
+            <p className="text-sm text-slate-600">Mahasiswa Komputerisasi Akuntansi yang hobby mencoba hal baru khususnya penerapan akuntansi dalam sistem informasi.</p>
           </div>
           
           <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-md transition-shadow">

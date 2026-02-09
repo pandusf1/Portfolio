@@ -24,7 +24,7 @@ const Hero = () => {
                 Sebagai mahasiswa Akuntansi, saya memiliki ketertarikan besar untuk memahami <b>bagaimana sistem ERP bekerja di balik layar</b>—bukan hanya pengguna, tapi juga perancang logika.
               </p>
               <p className="text-base border-l-4 border-blue-200 pl-4 italic text-slate-500">
-                "Saya memanfaatkan teknologi & AI untuk membantu saya menerjemahkan logika akuntansi ke dalam skrip sistem (Python/XML) yang efisien."
+                "Saya memanfaatkan teknologi & AI untuk membantu saya menerjemahkan logika akuntansi dalammembangun dan mengembangkan berbagai proyek teknologi, mulai dari sistem ERP hingga aplikasi finansial."
               </p>
             </div>
 
